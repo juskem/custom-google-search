@@ -8,8 +8,5 @@
 enabled_site_setting :custom_google_search_enabled
 
 after_initialize do
-  # This tells Discourse to use our custom template
-  Discourse::Application.routes.append do
-    get "components/google-search" => "discourse#show", constraints: { format: "json" }
-  end
+  # Nothing additional needed here since we're only replacing the template
 end
