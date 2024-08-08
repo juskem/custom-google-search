@@ -17,8 +17,11 @@
   
         const searchTerm = form.querySelector('input[name="q"]').value;
   
+        // Construct the correct API URL
+        const apiUrl = 'https://7cs72f6qgg.execute-api.eu-central-1.amazonaws.com/search?q=' + encodeURIComponent(searchTerm);
+  
         // Make the API request
-        fetch('https://7cs72f6qgg.execute-api.eu-central-1.amazonaws.com/search?q=' + encodeURIComponent(searchTerm))
+        fetch(apiUrl)
           .then(response => response.json())
           .then(data => {
             // Assuming the returned JSON has a structure where the URL you need is in a field named 'url'
