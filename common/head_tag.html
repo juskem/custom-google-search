@@ -2,7 +2,7 @@
   <div>
     <form id='google-search-form'>
       <input type="text" name="q" value="{{searchTerm}}">
-      <button class="btn btn-primary" id="search-button">+Podcast</button>
+      <button type="button" class="btn btn-primary" id="search-button">+Podcast</button>
     </form>
   </div>
   </script>
@@ -13,30 +13,35 @@
       const button = document.getElementById('search-button');
   
       button.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
+        // Prevent any default form submission
+        event.preventDefault();
   
         const searchTerm = form.querySelector('input[name="q"]').value;
   
-        // Construct the correct API URL
+        // Ensure the full AWS Lambda URL is used
         const apiUrl = 'https://7cs72f6qgg.execute-api.eu-central-1.amazonaws.com/search?q=' + encodeURIComponent(searchTerm);
   
-        // Make the API request
-        fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => {
-            // Assuming the returned JSON has a structure where the URL you need is in a field named 'url'
-            const url = data.url;
+        // Make the API request using fetch
+        fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          const url = data.url;
   
-            // Open the URL in a new tab
-            if (url) {
-              window.open(url, '_blank');
-            } else {
-              alert('No URL found in the response');
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching the search result:', error);
-          });
+          // Open the URL in a new tab if it exists
+          if (url) {
+            window.open(url, '_blank');
+          } else {
+            alert('No URL found in the response');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching the search result:', error);
+        });
       });
     });
   </script>
