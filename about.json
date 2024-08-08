@@ -1,0 +1,7 @@
+{
+   "name" : "DuckDuckGo Search Suggestion",
+   "about_url" : "https://github.com/juskem/custom-google-search",
+   "license_url": "https://github.com/juskem/custom-google-search/blob/main/LICENSE-APACHE",
+   "assets": {},
+   "component": true
+}
