@@ -5,10 +5,12 @@
       <button type="button" class="btn btn-primary" id="search-button">+Podcast</button>
     </form>
   </div>
-  </script>
   
   <script type="text/javascript">
+    // Adding the script directly inside the template to ensure it runs after the template is rendered
     document.addEventListener('DOMContentLoaded', function() {
+      console.log("DOM fully loaded and parsed");
+      
       const form = document.getElementById('google-search-form');
       const button = document.getElementById('search-button');
   
@@ -16,6 +18,7 @@
         console.error('Form with id "google-search-form" not found in the DOM.');
         return;
       }
+      console.log("Form found:", form);
   
       button.addEventListener('click', function(event) {
         event.preventDefault();
@@ -50,5 +53,6 @@
         });
       });
     });
+  </script>
   </script>
   
