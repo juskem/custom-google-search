@@ -12,16 +12,23 @@
       const form = document.getElementById('google-search-form');
       const button = document.getElementById('search-button');
   
+      if (!form) {
+        console.error('Form with id "google-search-form" not found in the DOM.');
+        return;
+      }
+  
       button.addEventListener('click', function(event) {
-        // Prevent any default form submission
         event.preventDefault();
   
         const searchTerm = form.querySelector('input[name="q"]').value;
   
-        // Ensure the full AWS Lambda URL is used
+        if (!searchTerm) {
+          alert('Please enter a search term.');
+          return;
+        }
+  
         const apiUrl = 'https://7cs72f6qgg.execute-api.eu-central-1.amazonaws.com/search?q=' + encodeURIComponent(searchTerm);
   
-        // Make the API request using fetch
         fetch(apiUrl, {
           method: 'GET',
           headers: {
@@ -32,7 +39,6 @@
         .then(data => {
           const url = data.url;
   
-          // Open the URL in a new tab if it exists
           if (url) {
             window.open(url, '_blank');
           } else {
