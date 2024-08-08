@@ -1,8 +1,8 @@
 <script type="text/x-handlebars" data-template-name="components/google-search">
   <div>
-    <form id='google-search'>
+    <form action="https://your-api-gateway-endpoint.amazonaws.com/Prod/search" id="google-search" method="GET">
       <input type="text" name="q" value="{{searchTerm}}">
-      <button type="submit" class="btn btn-primary">+Podcast</button>
+      <button class="btn btn-primary">Search</button>
     </form>
   </div>
-  </script>
+</script>
